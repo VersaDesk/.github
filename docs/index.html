@@ -1,0 +1,456 @@
+<!doctype html>
+<html lang="zh-TW">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Versadesk 雲桌面運算平台</title>
+    <meta name="description" content="Versadesk 雲桌面運算平台，以 Container 為核心，透過 Playbook 工作流程與 Subdomain Proxy，在網頁上提供類桌面的多視窗操作體驗。" />
+    <link rel="icon" type="image/x-icon" href="./assets/LOGO.ico" />
+    <link rel="icon" type="image/png" href="./assets/LOGO.png" />
+    <link rel="apple-touch-icon" href="./assets/LOGO.png" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div id="networkCanvas" class="bg-canvas"></div>
+    <div class="glow-overlay"></div>
+    <div class="grid-overlay"></div>
+
+    <nav class="main-nav">
+      <div class="nav-container">
+        <a href="#home" class="logo entrance-anim fade-down" aria-label="Versadesk 首頁">
+          <img class="logo-mark" src="./assets/LOGO.png" alt="" aria-hidden="true" />
+          <img class="logo-wordmark" src="./assets/Title_LOGO.png" alt="Versadesk" />
+          <span class="logo-version">v2.0</span>
+        </a>
+        <ul class="menu entrance-anim fade-down delay-1">
+          <li><a href="#home" data-i18n="nav.home">首頁</a></li>
+          <li><a href="#architecture" data-i18n="nav.architecture">平台架構</a></li>
+          <li><a href="#features" data-i18n="nav.features">核心特點</a></li>
+          <li><a href="#scenarios" data-i18n="nav.scenarios">適用場景</a></li>
+          <li><a href="#about" data-i18n="nav.about">關於</a></li>
+        </ul>
+        <div class="nav-actions entrance-anim fade-down delay-2">
+          <div class="lang-switcher">
+            <button class="lang-btn active" data-lang="zh-TW">中文</button>
+            <button class="lang-btn" data-lang="en">EN</button>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <main class="content-wrapper">
+      <!-- ============= HERO ============= -->
+      <section id="home" class="hero-section">
+        <div class="hero-grid">
+          <div class="hero-content">
+            <span class="status-badge js-hero-item">
+              <span class="badge-dot"></span>
+              Versadesk · v2.0.0
+            </span>
+
+            <h1 class="main-title js-hero-item">
+              Versadesk
+              <br />
+              <span class="title-gradient" data-i18n="hero.title.gradient">雲桌面運算平台</span>
+            </h1>
+
+            <p class="sub-text js-hero-item" data-i18n-html="hero.sub">
+              以 Container 為核心的雲端運算平台，凡 Container 能執行的工作負載都能管理。
+              <br />
+              搭配 Playbook 工作流程與 Subdomain Proxy，在瀏覽器中提供類桌面的多視窗操作體驗。
+            </p>
+
+            <div class="btn-group js-hero-item">
+              <button class="btn btn-primary gotodesktop">
+                <span class="btn-text" data-i18n="hero.btn.desktop">前往桌面網頁版本</span>
+                <span class="btn-arrow">→</span>
+              </button>
+              <button class="btn btn-outline gotoweb">
+                <span class="btn-text" data-i18n="hero.btn.web">前往傳統網頁版本</span>
+                <span class="btn-arrow">→</span>
+              </button>
+            </div>
+
+            <div class="hero-stats js-hero-item">
+              <div class="stat-item">
+                <div class="stat-number" data-count="4">0</div>
+                <div class="stat-label" data-i18n="hero.stat.arch">層架構設計</div>
+              </div>
+              <div class="stat-divider"></div>
+              <div class="stat-item">
+                <div class="stat-number" data-count="2">0</div>
+                <div class="stat-label" data-i18n="hero.stat.modes">種操作模式</div>
+              </div>
+              <div class="stat-divider"></div>
+              <div class="stat-item">
+                <div class="stat-number" data-count="3">0</div>
+                <div class="stat-label" data-i18n="hero.stat.rbac">層 RBAC 權限</div>
+              </div>
+              <div class="stat-divider"></div>
+              <div class="stat-item">
+                <div class="stat-number">∞</div>
+                <div class="stat-label" data-i18n="hero.stat.cases">應用場景</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-visual js-hero-visual">
+            <div class="hero-card-stage">
+              <span class="hero-card-halo" aria-hidden="true"></span>
+              <span class="hero-card-glow" aria-hidden="true"></span>
+              <span class="hero-spark spark-1" aria-hidden="true"></span>
+              <span class="hero-spark spark-2" aria-hidden="true"></span>
+              <span class="hero-spark spark-3" aria-hidden="true"></span>
+              <span class="hero-chip chip-1">Container</span>
+              <span class="hero-chip chip-2">Playbook</span>
+              <span class="hero-chip chip-3">Subdomain Proxy</span>
+              <span class="hero-chip chip-4">Multi-Window</span>
+              <div class="hero-card-float">
+                <div class="hero-card-tilt">
+                  <img class="hero-card-img" src="./assets/hero_card.png" alt="Versadesk — One Desktop. All Containers. Infinite Possibilities." />
+                  <span class="hero-card-shine" aria-hidden="true"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="scroll-hint">
+          <span>SCROLL</span>
+          <div class="scroll-line"></div>
+        </div>
+      </section>
+
+      <!-- ============= ARCHITECTURE ============= -->
+      <section id="architecture" class="grid-section">
+        <div class="section-header">
+          <span class="section-tag">Architecture</span>
+          <h2 class="section-heading" data-i18n="arch.heading">四層解耦架構</h2>
+          <p data-i18n="arch.desc">每一層獨立設計，擴充任何一層都不影響其他層</p>
+        </div>
+
+        <div class="architecture-stack">
+          <div class="arch-layer">
+            <div class="arch-layer-num">01</div>
+            <div class="arch-layer-body">
+              <div class="arch-layer-tag" data-i18n="arch.l1.tag">資源管理層</div>
+              <h3 data-i18n="arch.l1.title">專案 Project</h3>
+              <p data-i18n="arch.l1.desc">管理成員、資料集、權限與任務結果，提供完整的工作空間隔離。</p>
+            </div>
+            <div class="arch-layer-icon">📁</div>
+          </div>
+
+          <div class="arch-layer">
+            <div class="arch-layer-num">02</div>
+            <div class="arch-layer-body">
+              <div class="arch-layer-tag" data-i18n="arch.l2.tag">任務封裝層</div>
+              <h3 data-i18n="arch.l2.title">套件 Package</h3>
+              <p data-i18n="arch.l2.desc">將 Playbook 包裝為使用者友善的執行介面，附帶參數表單與 Page 頁面。</p>
+            </div>
+            <div class="arch-layer-icon">📦</div>
+          </div>
+
+          <div class="arch-layer">
+            <div class="arch-layer-num">03</div>
+            <div class="arch-layer-body">
+              <div class="arch-layer-tag" data-i18n="arch.l3.tag">工作流程層</div>
+              <h3>Playbook</h3>
+              <p data-i18n="arch.l3.desc">以 YAML 定義任務邏輯，支援 Nunjucks 模板與多服務並行（concurrency）。</p>
+            </div>
+            <div class="arch-layer-icon">⚡</div>
+          </div>
+
+          <div class="arch-layer">
+            <div class="arch-layer-num">04</div>
+            <div class="arch-layer-body">
+              <div class="arch-layer-tag" data-i18n="arch.l4.tag">基礎設施層</div>
+              <h3 data-i18n="arch.l4.title">Connector 模組</h3>
+              <p data-i18n="arch.l4.desc">橋接平台與運算後端（目前支援 Docker。Kubernetes 與 公有雲則規劃中），同一份 Playbook 切換 Connector 即可跨環境執行。</p>
+            </div>
+            <div class="arch-layer-icon">🔌</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============= FEATURES ============= -->
+      <section id="features" class="grid-section alternate-bg">
+        <div class="section-header">
+          <span class="section-tag">Features</span>
+          <h2 class="section-heading" data-i18n="feat.heading">平台特點</h2>
+          <p data-i18n="feat.desc">從容器代理到權限控管，覆蓋日常使用所需</p>
+        </div>
+
+        <div class="features-grid">
+          <div class="info-card highlight-card">
+            <div class="card-badge" data-i18n="feat.badge.new">v2.0 新版</div>
+            <div class="card-icon">🌐</div>
+            <h3 data-i18n="feat.proxy.title">Subdomain Proxy 代理</h3>
+            <p data-i18n="feat.proxy.desc">每個容器服務分配獨立子網域，容器內感知自身跑在根路徑，免除v1.0.0版本的 Path Rewrite 衍生的相容性問題。</p>
+            <div class="code-snippet">
+              <span class="code-comment" data-i18n="feat.proxy.comment"># 自動分配格式</span>
+              <br />
+              <span class="code-key">&#123;&#123;JobId&#125;&#125;-jupyter</span>
+              .desk.Versadesk.app
+            </div>
+          </div>
+
+          <div class="info-card">
+            <div class="card-icon">🪟</div>
+            <h3 data-i18n="feat.multiwin.title">桌面多視窗體驗</h3>
+            <p data-i18n="feat.multiwin.desc">每個容器服務以獨立視窗呈現，Jupyter、TensorBoard、File Browser 全在同一個畫面內操作，不再切換分頁。</p>
+            <div class="tag-group">
+              <span>Multi-Window</span>
+              <span>Drag & Drop</span>
+              <span>Workspace</span>
+            </div>
+          </div>
+
+          <div class="info-card">
+            <div class="card-icon">📜</div>
+            <h3 data-i18n="feat.playbook.title">Playbook 工作流程</h3>
+            <p data-i18n="feat.playbook.desc">類 docker-compose 的 YAML 語法，支援 Nunjucks 模板。一份定義跨環境執行，多服務並行。</p>
+            <div class="tag-group">
+              <span>YAML</span>
+              <span>Nunjucks</span>
+              <span>Concurrency</span>
+            </div>
+          </div>
+
+          <div class="info-card">
+            <div class="card-icon">🔐</div>
+            <h3 data-i18n="feat.rbac.title">三層 RBAC 權限</h3>
+            <p data-i18n="feat.rbac.desc">平台、套件、專案三套獨立的 RBAC 系統，從六級平台權限到 Owner/Admin/Executor/Viewer 細緻控管。</p>
+            <div class="tag-group">
+              <span>Platform</span>
+              <span>Package</span>
+              <span>Project</span>
+            </div>
+          </div>
+
+          <div class="info-card">
+            <div class="card-icon">🧩</div>
+            <h3 data-i18n="feat.container.title">Container 通用</h3>
+            <p data-i18n="feat.container.desc">不限於 AI 訓練——AI 推論、資料處理、遊戲伺服器、Web 服務、開發環境，凡 Container 能跑都能上。</p>
+            <div class="tag-group">
+              <span>AI Training</span>
+              <span>Web Service</span>
+              <span>Game Server</span>
+            </div>
+          </div>
+
+          <div class="info-card">
+            <div class="card-icon">📦</div>
+            <h3 data-i18n="feat.package.title">套件 & 參數表單</h3>
+            <p data-i18n="feat.package.desc">把複雜 Playbook 包裝為使用者友善的執行介面，自動產生參數表單，支援 JSON 匯出匯入跨環境部署。</p>
+            <div class="tag-group">
+              <span>Form Schema</span>
+              <span>Import/Export</span>
+            </div>
+          </div>
+
+          <div class="info-card">
+            <div class="card-icon">🎨</div>
+            <h3 data-i18n="feat.page.title">Page 嵌入式頁面</h3>
+            <p data-i18n-html="feat.page.desc">
+              三種 Page 類型（專案 / 結果 / 檔案頁面），搭配
+              <strong>Client API</strong>
+              打造客製化儀表板、即時監控與資料可視化。
+            </p>
+            <div class="tag-group">
+              <span>Project Page</span>
+              <span>Result Page</span>
+              <span>File Page</span>
+            </div>
+          </div>
+
+          <div class="info-card">
+            <div class="card-icon">🔗</div>
+            <h3 data-i18n="feat.element.title">Element 模組整合</h3>
+            <p data-i18n="feat.element.desc">把自訂 Web 應用嵌入平台導覽列或桌面，像原生功能一樣呈現，打造「平台內的平台」。搭配 Theme 模組可完整客製化視覺主題與品牌識別。</p>
+            <div class="tag-group">
+              <span>Embed</span>
+              <span>Native UX</span>
+              <span>Theme</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============= MODES ============= -->
+      <section id="modes" class="grid-section">
+        <div class="section-header">
+          <span class="section-tag">UI Modes</span>
+          <h2 class="section-heading" data-i18n="modes.heading">兩種操作模式，自由切換</h2>
+          <p data-i18n="modes.desc">同一平台兩種風格，滿足不同使用者習慣</p>
+        </div>
+
+        <div class="modes-grid">
+          <div class="mode-card">
+            <div class="mode-card-header">
+              <span class="mode-emoji">🖥️</span>
+              <div>
+                <div class="mode-tag">For Everyone</div>
+                <h3 data-i18n="mode.desktop.title">桌面模式</h3>
+              </div>
+            </div>
+            <p data-i18n="mode.desktop.desc">圖示化介面，類作業系統體驗，每個容器服務以獨立視窗呈現，可同時開啟多個 Proxy Page，像本機桌面一樣操作。</p>
+            <ul class="mode-list">
+              <li>
+                <span>✓</span>
+                <span data-i18n="mode.desktop.li1">多視窗並列，無需切換分頁</span>
+              </li>
+              <li>
+                <span>✓</span>
+                <span data-i18n="mode.desktop.li2">類 Windows / macOS 桌面體驗</span>
+              </li>
+              <li>
+                <span>✓</span>
+                <span data-i18n="mode.desktop.li3">適合一般使用者與非技術人員</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="mode-card">
+            <div class="mode-card-header">
+              <span class="mode-emoji">⚙️</span>
+              <div>
+                <div class="mode-tag">For Developers</div>
+                <h3 data-i18n="mode.web.title">傳統網頁模式</h3>
+              </div>
+            </div>
+            <p data-i18n="mode.web.desc">側邊欄導覽，標準 Web 應用布局，提供更直覺的列表與表單操作介面，適合開發者與進階使用者。</p>
+            <ul class="mode-list">
+              <li>
+                <span>✓</span>
+                <span data-i18n="mode.web.li1">標準 Web 應用布局</span>
+              </li>
+              <li>
+                <span>✓</span>
+                <span data-i18n="mode.web.li2">清楚的清單與表單操作</span>
+              </li>
+              <li>
+                <span>✓</span>
+                <span data-i18n="mode.web.li3">適合開發者與管理者</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============= SCENARIOS ============= -->
+      <section id="scenarios" class="grid-section alternate-bg">
+        <div class="section-header">
+          <span class="section-tag">Use Cases</span>
+          <h2 class="section-heading" data-i18n="sc.heading">適用場景</h2>
+          <p data-i18n="sc.desc">從研究團隊到企業 IT，Versadesk 都能勝任</p>
+        </div>
+
+        <div class="scenarios-grid">
+          <div class="scenario-card">
+            <div class="scenario-icon">🧠</div>
+            <h3 data-i18n="sc.ai.title">AI / 機器學習團隊</h3>
+            <p data-i18n="sc.ai.desc">統一管理模型訓練與推論服務，Jupyter、TensorBoard、各類 WebUI 全在同一桌面操作。Playbook 一次定義。</p>
+            <div class="scenario-tags">
+              <span>PyTorch</span>
+              <span>TensorFlow</span>
+              <span>YOLO</span>
+              <span>Stable Diffusion</span>
+            </div>
+          </div>
+
+          <div class="scenario-card">
+            <div class="scenario-icon">🎓</div>
+            <h3 data-i18n="sc.edu.title">教育機構 / 研究單位</h3>
+            <p data-i18n="sc.edu.desc">老師定義套件設計playbook，學生一鍵執行或研究生透過playbook設計工作流程加速訓練。每位學生資料集與環境藉由專案完全隔離，可限制 GPU 與記憶體上限，防止資源濫用。</p>
+            <div class="scenario-tags">
+              <span data-i18n="sc.edu.tag1">多人隔離</span>
+              <span data-i18n="sc.edu.tag2">資源管控</span>
+              <span data-i18n="sc.edu.tag3">低門檻</span>
+            </div>
+          </div>
+
+          <div class="scenario-card">
+            <div class="scenario-icon">🏢</div>
+            <h3 data-i18n="sc.corp.title">企業 IT / DevOps</h3>
+            <p data-i18n="sc.corp.desc">自行設計內部Element工具（管理介面、檔案瀏覽器、監控儀表板）。透過專案與套件權限，不同部門互不干擾。Element 模組可嵌入既有業務系統。</p>
+            <div class="scenario-tags">
+              <span data-i18n="sc.corp.tag1">內部工具集</span>
+              <span data-i18n="sc.corp.tag2">權限隔離</span>
+              <span data-i18n="sc.corp.tag3">系統整合</span>
+            </div>
+          </div>
+
+          <div class="scenario-card">
+            <div class="scenario-icon">🎮</div>
+            <h3 data-i18n="sc.game.title">遊戲 / 媒體 / 其他服務</h3>
+            <p data-i18n="sc.game.desc">遊戲伺服器、轉碼任務、3D 渲染——Container 能跑的都能上。Subdomain Proxy 讓任何 Web 管理介面都能透過平台代理。</p>
+            <div class="scenario-tags">
+              <span>Game Server</span>
+              <span>Transcoding</span>
+              <span>Rendering</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============= ABOUT & CONTACT ============= -->
+      <section id="about" class="grid-section alternate-bg">
+        <div class="about-container">
+          <div class="about-text">
+            <span class="section-tag">About</span>
+            <h2 class="section-heading" style="text-align: left" data-i18n="about.heading">關於 Versadesk</h2>
+            <p class="desc" data-i18n="about.desc">Versadesk 團隊致力於提供最完整的容器化雲端運算解決方案。從硬體到軟體的全方位整合，幫助企業與開發者快速部署任何容器化應用。</p>
+            <div class="about-list">
+              <div class="about-item">
+                <h4 data-i18n="about.hw.title">🏗️ 硬體架構規劃</h4>
+                <p data-i18n="about.hw.desc">網路、伺服器、線路及電力規劃，提供完整的部署建議。</p>
+              </div>
+              <div class="about-item">
+                <h4 data-i18n="about.sw.title">💻 軟體架構整合</h4>
+                <p data-i18n="about.sw.desc">儲存系統、網絡架構、叢集建立及 Wildcard DNS / SSL 一次性配置。</p>
+              </div>
+              <div class="about-item">
+                <h4 data-i18n="about.conn.title">🔌 跨後端 Connector</h4>
+                <p data-i18n="about.conn.desc">已支援 Docker，K8s 與公有雲（AWS / GCP / Azure）規劃中。</p>
+              </div>
+            </div>
+          </div>
+
+          <div id="contact" class="contact-box">
+            <div class="contact-header">
+              <span class="contact-pulse"></span>
+              <h3 data-i18n="contact.heading">聯絡我們</h3>
+            </div>
+            <div class="contact-info-item">
+              <span class="contact-icon">✉️</span>
+              <div>
+                <div class="contact-label">Email</div>
+                evanlin820624@gmail.com
+              </div>
+            </div>
+            <div class="contact-info-item">
+              <span class="contact-icon">🕒</span>
+              <div>
+                <div class="contact-label" data-i18n="contact.hours.label">服務時間</div>
+                <span data-i18n="contact.hours.value">週一至週五 09:00 – 18:00</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="main-footer">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <img src="./assets/LOGO.png" alt="Versadesk" class="footer-logo" />
+          <span>Versadesk</span>
+        </div>
+        <p>&copy; 2026 Versadesk Team. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script src="/assets/phantom-client-api.js"></script>
+    <script type="module" src="./scripts/main.js"></script>
+  </body>
+</html>
